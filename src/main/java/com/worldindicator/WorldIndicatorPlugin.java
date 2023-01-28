@@ -47,6 +47,7 @@ public class WorldIndicatorPlugin extends Plugin
 				int uid = client.getIntStack()[client.getIntStackSize() -1];
 				final MessageNode messageNode = client.getMessages().get(uid);
 				assert messageNode != null : "unknown message";
+				//Chat message type means is it public chat, friend chat ect.
 				final ChatMessageType messageType = messageNode.getType();
 				switch (messageType)
 				{
@@ -54,6 +55,7 @@ public class WorldIndicatorPlugin extends Plugin
 						final String[] stringStack = client.getStringStack();
 						final int stringSize = client.getStringStackSize();
 						final String name = stringStack[stringSize - 3];
+						//with just name the world isn't always displayed so the tags need to be removed
 						final int member_world = getWorld(Text.removeTags(name));
 						stringStack[stringSize - 3] = name + " " + config.Separator() + " World: " + String.valueOf(member_world);
 						break;
